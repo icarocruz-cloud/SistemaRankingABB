@@ -50,14 +50,12 @@ public class ArvoreABB {
 
         if (pontuacao < no.getJogador().getPontuacao()) {
             no.setEsquerda(removerRec(no.getEsquerda(), pontuacao));
-        }
-        else if (pontuacao > no.getJogador().getPontuacao()) {
+        } else if (pontuacao > no.getJogador().getPontuacao()) {
             no.setDireita(removerRec(no.getDireita(), pontuacao));
-        }
-        else {
+        } else {
 
             if (no.getEsquerda() == null &&
-                no.getDireita() == null)
+                    no.getDireita() == null)
                 return null;
 
             if (no.getEsquerda() == null)
@@ -71,10 +69,10 @@ public class ArvoreABB {
             no.setJogador(sucessor.getJogador());
 
             no.setDireita(
-                removerRec(
-                    no.getDireita(),
-                    sucessor.getJogador().getPontuacao()
-                )
+                    removerRec(
+                            no.getDireita(),
+                            sucessor.getJogador().getPontuacao()
+                    )
             );
         }
 
@@ -193,5 +191,36 @@ public class ArvoreABB {
                 alturaRec(no.getEsquerda()),
                 alturaRec(no.getDireita())
         ) + 1;
+    }
+
+    // ===== NOVO MÉTODO PARA EXIBIR A ÁRVORE =====
+
+    public void mostrarArvore() {
+
+        System.out.println("\n===== ESTRUTURA DA ÁRVORE =====");
+
+        if (raiz == null) {
+            System.out.println("Árvore vazia.");
+            return;
+        }
+
+        mostrarArvoreRec(raiz, "", true);
+    }
+
+    private void mostrarArvoreRec(No no, String espaco, boolean ultimo) {
+
+        if (no != null) {
+
+            System.out.println(
+                    espaco +
+                    (ultimo ? "└── " : "├── ") +
+                    no.getJogador().getPontuacao()
+            );
+
+            espaco += ultimo ? "    " : "│   ";
+
+            mostrarArvoreRec(no.getEsquerda(), espaco, false);
+            mostrarArvoreRec(no.getDireita(), espaco, true);
+        }
     }
 }
