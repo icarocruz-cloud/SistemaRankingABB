@@ -24,7 +24,8 @@ public class SistemaRanking {
             System.out.println("8 - Altura da Árvore");
             System.out.println("9 - Pré-Ordem");
             System.out.println("10 - Pós-Ordem");
-            System.out.println("11 - Encerrar");
+            System.out.println("11 - Mostrar Estrutura da Árvore");
+            System.out.println("12 - Encerrar");
             System.out.print("Opção: ");
 
             try {
@@ -114,9 +115,18 @@ public class SistemaRanking {
                         int remover = sc.nextInt();
                         sc.nextLine();
 
-                        ranking.remover(remover);
+                        if (ranking.buscar(remover) != null) {
 
-                        System.out.println("Operação concluída.");
+                            ranking.remover(remover);
+
+                            System.out.println("Jogador removido com sucesso!");
+
+                        } else {
+
+                            System.out.println("Jogador não encontrado.");
+
+                        }
+
                     } catch (Exception e) {
                         System.out.println("Digite uma pontuação válida!");
                         sc.nextLine();
@@ -125,8 +135,10 @@ public class SistemaRanking {
                     break;
 
                 case 4:
+
                     System.out.println("\n===== RANKING =====");
                     ranking.emOrdem();
+
                     break;
 
                 case 5:
@@ -177,7 +189,14 @@ public class SistemaRanking {
 
                 case 11:
 
+                    ranking.mostrarArvore();
+
+                    break;
+
+                case 12:
+
                     System.out.println("Sistema encerrado.");
+
                     break;
 
                 default:
@@ -185,7 +204,7 @@ public class SistemaRanking {
                     System.out.println("Opção inválida.");
             }
 
-        } while (opcao != 11);
+        } while (opcao != 12);
 
         sc.close();
     }
