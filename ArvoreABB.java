@@ -193,7 +193,6 @@ public class ArvoreABB {
         ) + 1;
     }
 
-    // ===== NOVO MÉTODO PARA EXIBIR A ÁRVORE =====
 
     public void mostrarArvore() {
 
